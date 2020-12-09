@@ -7,7 +7,8 @@ export const plugin = new PanelPlugin<TimestampImagePanelOptions>(TimestampImage
   return builder.addTextInput({
     path: 'imageUrl',
     name: 'Image Url',
-    description: 'Should contain an URL representing a service that delivers images (https://server:host/path/ or .../path?para=).',
+    description:
+      'Should contain an URL representing a service that delivers images (https://server:host/path/ or .../path?para=).',
     defaultValue: undefined,
   });
 });

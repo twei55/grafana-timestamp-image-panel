@@ -55,8 +55,8 @@ const initialize = (imageUrl: string, imageRef: any) => {
       if (e.item) {
         imageRef.current.src = PROGRESS_IMAGEURL;
         const timestamp = new Date(e.item.datapoint[0]).toJSON();
-        const parsedUrl = new URL(imageUrl)
-        const url = parsedUrl.search ? `${imageUrl}${timestamp}` : `${imageUrl}${timestamp}`
+        const parsedUrl = new URL(imageUrl);
+        const url = parsedUrl.search ? `${imageUrl}${timestamp}` : `${imageUrl}${timestamp}`;
         try {
           const response = await fetch(url);
           const imageBlob = await response.blob();
