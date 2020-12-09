@@ -5,12 +5,6 @@ import { css, cx } from 'emotion';
 import { stylesFactory } from '@grafana/ui';
 import { SystemJS } from '@grafana/runtime';
 
-/*
-elem.bind('plotclick', (event: any, pos: any, item: any) => {
-  appEvents.emit(CoreEvents.graphClicked, { pos: pos, panel: panel, item: item });
-});
-*/
-
 const PLACEHOLDER_IMAGEURL = 'public/plugins/fzj-grafana-timestamp-image/img/logo.svg';
 const PROGRESS_IMAGEURL = 'public/plugins/fzj-grafana-timestamp-image/img/progress.svg';
 const ERROR_IMAGEURL = 'public/plugins/fzj-grafana-timestamp-image/img/error.png';
@@ -61,8 +55,10 @@ const initialize = (imageUrl: string, imageRef: any) => {
       if (e.item) {
         imageRef.current.src = PROGRESS_IMAGEURL;
         const timestamp = new Date(e.item.datapoint[0]).toJSON();
+        const parsedUrl = new URL(imageUrl)
+        const url = parsedUrl.search ? `${imageUrl}${timestamp}` : `${imageUrl}${timestamp}`
         try {
-          const response = await fetch(`${imageUrl}/${timestamp}`);
+          const response = await fetch(url);
           const imageBlob = await response.blob();
           const image = URL.createObjectURL(imageBlob);
           imageRef.current.src = image;
