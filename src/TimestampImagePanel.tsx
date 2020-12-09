@@ -5,7 +5,15 @@ import { css, cx } from 'emotion';
 import { stylesFactory } from '@grafana/ui';
 import { SystemJS } from '@grafana/runtime';
 
+/*
+elem.bind('plotclick', (event: any, pos: any, item: any) => {
+  appEvents.emit(CoreEvents.graphClicked, { pos: pos, panel: panel, item: item });
+});
+*/
+
 const PLACEHOLDER_IMAGEURL = 'public/plugins/fzj-grafana-timestamp-image/img/logo.svg';
+const PROGRESS_IMAGEURL = 'public/plugins/fzj-grafana-timestamp-image/img/progress.svg';
+const ERROR_IMAGEURL = 'public/plugins/fzj-grafana-timestamp-image/img/error.png';
 
 interface Props extends PanelProps<TimestampImagePanelOptions> {}
 
@@ -51,6 +59,7 @@ const initialize = (imageUrl: string, imageRef: any) => {
     // @ts-ignore
     appEvents.on('graph-click', async (e: any) => {
       if (e.item) {
+        imageRef.current.src = PROGRESS_IMAGEURL;
         const timestamp = new Date(e.item.datapoint[0]).toJSON();
         try {
           const response = await fetch(`${imageUrl}/${timestamp}`);
@@ -58,7 +67,8 @@ const initialize = (imageUrl: string, imageRef: any) => {
           const image = URL.createObjectURL(imageBlob);
           imageRef.current.src = image;
         } catch (exception) {
-          console.log(exception);
+          // console.log(exception);
+          imageRef.current.src = ERROR_IMAGEURL;
         }
       }
     });
