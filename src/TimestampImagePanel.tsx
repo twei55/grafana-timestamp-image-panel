@@ -23,8 +23,8 @@ export const TimestampImagePanel: React.FC<Props> = ({ options, data, width, hei
       className={cx(
         styles.wrapper,
         css`
-          width: ${width}px
-          height: ${height}px
+          width: ${width}px;
+          height: ${height}px;
         `
       )}
     >
@@ -39,15 +39,16 @@ const getStyles = stylesFactory(() => {
       position: relative;
     `,
     img: css`
-      position: absolute
-      top: 0
-      left: 0
+      position: absolute;
+      top: 0;
+      left: 0;
     `,
   };
 });
 
 const initialize = (imageUrl: string, imageRef: any) => {
   SystemJS.load('app/core/app_events').then((appEvents: any) => {
+    // @ts-ignore
     appEvents.on('graph-click', async (e: any) => {
       if (e.item) {
         const timestamp = new Date(e.item.datapoint[0]).toJSON();
