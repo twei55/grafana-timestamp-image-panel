@@ -59,13 +59,12 @@ const initialize = (imageUrl: string, imageRef: any, imageExtension: string) => 
         const timestamp = new Date(e.item.datapoint[0]).toJSON();
         const url = `${imageUrl}${timestamp.replace(/:/g, '-')}.${imageExtension}`;
 
-        try {
-          const response = await fetch(url);
-          const imageBlob = await response.blob();
-          const image = URL.createObjectURL(imageBlob);
-          imageRef.current.src = image;
-        } catch (exception) {
-          // console.log(exception);
+        const response = await fetch(url);
+        const imageBlob = await response.blob();
+
+        if (imageBlob.type && imageBlob.type.includes('image')) {
+          imageRef.current.src = URL.createObjectURL(imageBlob);
+        } else {
           imageRef.current.src = ERROR_IMAGEURL;
         }
       }
