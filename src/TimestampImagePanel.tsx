@@ -5,9 +5,9 @@ import { css, cx } from 'emotion';
 import { stylesFactory } from '@grafana/ui';
 import { SystemJS } from '@grafana/runtime';
 
-const PLACEHOLDER_IMAGEURL = 'public/plugins/fzj-grafana-timestamp-image/img/logo.svg';
+const PLACEHOLDER_IMAGEURL = 'public/plugins/fzj-grafana-timestamp-image/img/click-graph.svg';
 const PROGRESS_IMAGEURL = 'public/plugins/fzj-grafana-timestamp-image/img/progress.svg';
-const ERROR_IMAGEURL = 'public/plugins/fzj-grafana-timestamp-image/img/error.png';
+const ERROR_IMAGEURL = 'public/plugins/fzj-grafana-timestamp-image/img/image-not-found.svg';
 
 interface Props extends PanelProps<TimestampImagePanelOptions> {}
 
