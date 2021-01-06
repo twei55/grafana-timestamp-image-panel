@@ -13,12 +13,14 @@ interface Props extends PanelProps<TimestampImagePanelOptions> {}
 
 export const TimestampImagePanel: React.FC<Props> = ({ options, data, width, height }) => {
   let imageUrl: string;
+  let imageExtension: string;
   let imageRef: any;
 
   const styles = getStyles();
   imageUrl = options.imageUrl;
+  imageExtension = options.imageExtension;
   imageRef = useRef(null);
-  initialize(imageUrl, imageRef);
+  initialize(imageUrl, imageRef, imageExtension);
 
   return (
     <div
@@ -48,15 +50,15 @@ const getStyles = stylesFactory(() => {
   };
 });
 
-const initialize = (imageUrl: string, imageRef: any) => {
+const initialize = (imageUrl: string, imageRef: any, imageExtension: string) => {
   SystemJS.load('app/core/app_events').then((appEvents: any) => {
     // @ts-ignore
     appEvents.on('graph-click', async (e: any) => {
       if (e.item) {
         imageRef.current.src = PROGRESS_IMAGEURL;
         const timestamp = new Date(e.item.datapoint[0]).toJSON();
-        const parsedUrl = new URL(imageUrl);
-        const url = parsedUrl.search ? `${imageUrl}${timestamp}` : `${imageUrl}${timestamp}`;
+        const url = `${imageUrl}${timestamp.replace(/:/g, '-')}.${imageExtension}`;
+
         try {
           const response = await fetch(url);
           const imageBlob = await response.blob();
