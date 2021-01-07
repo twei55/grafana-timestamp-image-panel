@@ -1,0 +1,37 @@
+{
+  "type": "panel",
+  "name": "Timestamp Image",
+  "id": "fzj-grafana-timestamp-image",
+  "info": {
+    "description": "Visual Plugin to show an image for the selected timestamp.",
+    "author": {
+      "name": "Dirk Ecker",
+      "url": "https://www.fz-juelich.de"
+    },
+    "keywords": [
+      "image",
+      "timestamp"
+    ],
+    "logos": {
+      "small": "img/logo.svg",
+      "large": "img/logo.svg"
+    },
+    "links": [
+      {
+        "name": "Website",
+        "url": "https://github.com/grafana/simple-react-panel"
+      },
+      {
+        "name": "License",
+        "url": "https://github.com/grafana/simple-react-panel/blob/master/LICENSE"
+      }
+    ],
+    "screenshots": [],
+    "version": "1.0.0",
+    "updated": "2021-01-06"
+  },
+  "dependencies": {
+    "grafanaVersion": "7.0.x",
+    "plugins": []
+  }
+}
