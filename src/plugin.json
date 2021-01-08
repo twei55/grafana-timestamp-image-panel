@@ -2,6 +2,9 @@
   "type": "panel",
   "name": "Timestamp Image",
   "id": "fzj-grafana-timestamp-image",
+
+  "skipDataQuery": true,
+
   "info": {
     "description": "Visual Plugin to show an image for the selected timestamp.",
     "author": {
